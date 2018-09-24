@@ -85,14 +85,5 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
          
-         
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    });
-    
-         
->>>>>>> 011fb8ed3e9b3d24262f93fcebe8a40da9c42036
->>>>>>> d23844479dd42dd7f505d89db67e84a7279d72fa
+
 }());
