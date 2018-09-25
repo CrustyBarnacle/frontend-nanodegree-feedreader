@@ -100,26 +100,27 @@ $(function() {
 
     /* loadFeed function test suite, "New Feed Selection" */
     describe('New Feed Selection', function() {
-        const feed = document.querySelector('.feed');
-        const initialFeed = [];
-
+        const feed = document.querySelector('.feed').innerHTML;
+        let initialFeed = [];
+        let newFeed = [];
+        // const feed = document.querySelector('.feed').innerHTML;
         /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        beforeEach(function(done) {
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry) {
-                initialFeed.push(entry.innerText);
+         beforeEach(function() {
+            loadFeed(0, function() {
+                initialFeed = feed;
+                loadFeed(1, function() {
+                    newFeed = feed;
+                    done();
+                });
             });
+         });
 
-            loadFeed(1, done);
-        });
-        it('content changes', function() {
-            Array.from(feed.children).forEach(function (entry, index) {
-                expect(entry.innerText === initialFeed[index]).toBe(false);
-            });
-        });
+         it('Content changes', function() {
+             expect(initialFeed === newFeed).toBe(false);
+         })
     });
 
 }());
