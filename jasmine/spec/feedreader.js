@@ -54,7 +54,6 @@ $(function() {
 
     /* This test suite, named "The menu", tests the "hamburger" menu functionality */
     describe('The menu', function() {
-
         /* Test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -90,15 +89,38 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
+        it('completes work', function() {
+        const feed = document.querySelector('.feed');
+        console.log('Feed loaded - Initial Entries');
+        expect(feed.children.length > 0).toBe(true);    
+        });
      });
 
     /* loadFeed function test suite, "New Feed Selection" */
-    describe('New Feed Selection"', function() {
+    describe('New Feed Selection', function() {
+        const feed = document.querySelector('.feed');
+        const initialFeed = [];
+        
         /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-
+        beforeEach(function(done) {
+            loadFeed(0);
+            Array.from(feed.children).forEach(function(entry) {
+                initialFeed.push(entry.innerText);
+            });
+            
+            loadFeed(1, done);
+        });
+        it('content changes', function() {
+            Array.from(feed.children).forEach(function (entry, index) {
+                expect(entry.innerText === initialFeed[index]).toBe(false);
+            });
+        });
     });
     
 }());
