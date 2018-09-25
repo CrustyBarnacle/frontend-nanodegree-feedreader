@@ -61,7 +61,7 @@ $(function() {
          */
          it('is hidden', function() {
             const body = document.querySelector('body');
-            expect(body.classList.contains('menu-hidden')).toBe(true); 
+            expect(body.classList.contains('menu-hidden')).toBe(true);
          });
 
          /* Test that ensures the menu changes
@@ -72,10 +72,10 @@ $(function() {
           it('toggles on and off', function() {
              const body = document.querySelector('body');
              const menu = document.querySelector('.menu-icon-link');
-             
+
              menu.click();
              expect(body.classList.contains('menu-hidden')).toBe(false);
-             
+
              menu.click();
              expect(body.classList.contains('menu-hidden')).toBe(true);
           });
@@ -92,9 +92,9 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, done);
         });
-        it('completes work', function() {
-        const feed = document.querySelector('.feed');
-        expect(feed.children.length > 0).toBe(true);    
+        it('completes work', function() { // select child entry elements
+        const feedEntries = document.querySelectorAll('.feed .entry-link');
+        expect(feedEntries.length).toBeGreaterThan(0);
         });
      });
 
@@ -102,7 +102,7 @@ $(function() {
     describe('New Feed Selection', function() {
         const feed = document.querySelector('.feed');
         const initialFeed = [];
-        
+
         /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
@@ -112,7 +112,7 @@ $(function() {
             Array.from(feed.children).forEach(function(entry) {
                 initialFeed.push(entry.innerText);
             });
-            
+
             loadFeed(1, done);
         });
         it('content changes', function() {
@@ -121,5 +121,5 @@ $(function() {
             });
         });
     });
-    
+
 }());
