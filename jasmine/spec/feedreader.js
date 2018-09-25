@@ -52,8 +52,8 @@ $(function() {
     });
 
 
-    /* This test suite, named "The menu", tests the "hamburger" menu functionality */
-    describe('The menu', function() {
+    /* This test suite, named "The Menu", tests the "hamburger" menu functionality */
+    describe('The Menu', function() {
         /* Test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
