@@ -94,7 +94,6 @@ $(function() {
         });
         it('completes work', function() {
         const feed = document.querySelector('.feed');
-        console.log('Feed loaded - Initial Entries');
         expect(feed.children.length > 0).toBe(true);    
         });
      });
