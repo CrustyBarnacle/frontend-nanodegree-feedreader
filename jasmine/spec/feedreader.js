@@ -92,15 +92,14 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, done);
         });
-        it('completes work', function() { // select child entry elements
-        const feedEntries = document.querySelectorAll('.feed .entry-link');
+        it('Loads Feed Entries', function() { // select child entry elements
+        const feedEntries = document.querySelectorAll('.feed .entry');
         expect(feedEntries.length).toBeGreaterThan(0);
         });
      });
 
     /* loadFeed function test suite, "New Feed Selection" */
     describe('New Feed Selection', function() {
-        const feed = document.querySelector('.feed').innerHTML;
         let initialFeed = [];
         let newFeed = [];
         // const feed = document.querySelector('.feed').innerHTML;
@@ -110,9 +109,9 @@ $(function() {
          */
          beforeEach(function() {
             loadFeed(0, function() {
-                initialFeed = feed;
+                initialFeed = document.querySelector('.feed').innerHTML;
                 loadFeed(1, function() {
-                    newFeed = feed;
+                    newFeed = document.querySelector('.feed').innerHTML;
                     done();
                 });
             });
